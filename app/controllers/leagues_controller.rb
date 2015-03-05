@@ -18,7 +18,7 @@ class LeaguesController < ApplicationController
 			team_names_array << eval(code)
 		end
 
-		@league.create_league(params[:league_name], teams_number, team_names_array)
+		@schedule = @league.create_league(params[:league_name], teams_number, team_names_array)
 
 	end
 

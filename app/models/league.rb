@@ -1,4 +1,5 @@
 class League < ActiveRecord::Base
+	require 'rubin'
 	has_many :teams
 
 	class << self
@@ -8,8 +9,6 @@ class League < ActiveRecord::Base
 	def create_league(league_name, number_of_teams, team_names)
 		@league = League.create(league_name: league_name, number_of_teams: number_of_teams)
 		(1..number_of_teams).each do |i|
-			code = "teams_played_with_team_#{i}=[]"
-			eval(code)
 			Team.create(league_id: @league.id) do |team|
 				team.games_played = 0
 				team.wins = 0
@@ -26,6 +25,10 @@ class League < ActiveRecord::Base
 			team.team_name = team_names[index]
 			team.save
 		end
+
+		team_names_shuffle = team_names.shuffle
+		league_schedule = Rubin.new(team_names_shuffle)
+		league_schedule.output
 
 	end
 	

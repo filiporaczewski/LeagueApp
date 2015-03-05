@@ -1,0 +1,7 @@
+<h1>Welcome in the League App</h1>
+
+<% @leagues.each do |league| %>
+	<p><%= league.league_name %></p>
+<% end %>
+ 
+<%= link_to 'New league', new_league_path %>

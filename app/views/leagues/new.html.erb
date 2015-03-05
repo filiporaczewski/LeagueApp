@@ -1,0 +1,22 @@
+<h3>Create new league</h3>
+
+<%= form_tag("/new") do %>
+	<%= label_tag(:num_team, "Number of teams: ") %>
+	<%= number_field_tag(:num_team) %>
+	<%= submit_tag("Change") %>
+<% end %>
+
+
+<%= form_tag("leagues#create") do %>
+	<div>
+		<%= label_tag(:league_name, "League name: ") %>:
+		<%= text_field_tag(:league_name) %>
+	</div>
+	<% if League.team_numb %>
+		<% (1..League.team_numb.to_i).each do |i| %>
+			<% code = ":team_name_#{i}" %>
+			<div><%= text_field_tag eval(code) %></div>
+		<% end %>
+	<% end %>
+	<div><%= submit_tag("Create League") %></div>
+<% end %>

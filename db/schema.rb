@@ -11,13 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303213140) do
+ActiveRecord::Schema.define(version: 20150306201303) do
+
+  create_table "calendars", force: :cascade do |t|
+    t.string   "schedule"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "league_id"
+  end
 
   create_table "leagues", force: :cascade do |t|
     t.string   "league_name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "number_of_teams"
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.string   "match_name"
+    t.integer  "first_team_score"
+    t.integer  "second_team_score"
+    t.integer  "league_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "teams", force: :cascade do |t|

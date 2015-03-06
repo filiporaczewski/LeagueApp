@@ -2,11 +2,13 @@ Rails.application.routes.draw do
 
   resources :leagues do 
     resources :teams
+    match 'match', to: 'leagues#play_match', via: [:post], on: :member
   end
 
   root to: "leagues#index"
 
   match 'new', to: 'leagues#new', via: [:get, :post]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

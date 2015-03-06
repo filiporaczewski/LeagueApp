@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  match_name: 
+  first_team_score: 
+  second_team_score: 1
+
+two:
+  match_name: 
+  first_team_score: 
+  second_team_score: 1

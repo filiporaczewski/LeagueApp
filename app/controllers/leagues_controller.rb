@@ -9,6 +9,13 @@ class LeaguesController < ApplicationController
 		League.team_numb = params[:num_team]
 	end
 
+	def play_match
+		@league = League.find(params[:id])	
+		@league.p_match(params[:match], params[:f_team_score].to_i, params[:s_team_score].to_i)
+
+		redirect_to :league
+	end
+
 	def create
 		@league = League.new
 		team_names_array = []
@@ -18,12 +25,14 @@ class LeaguesController < ApplicationController
 			team_names_array << eval(code)
 		end
 
-		@schedule = @league.create_league(params[:league_name], teams_number, team_names_array)
+		@league = @league.create_league(params[:league_name], teams_number, team_names_array)
+		@schedule = @league.calendar.schedule
 
 	end
 
 	def show
-
+		@league = League.find(params[:id])
+		League.get_team_names_from_schedule_string(@league, @league.calendar.schedule)
 	end
 
 	# private

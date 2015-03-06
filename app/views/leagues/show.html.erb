@@ -1,0 +1,40 @@
+<h1><%= @league.league_name %></h1>
+
+<table class="league-table">
+		<tr>
+			<th></th>
+			<th>G</th>
+			<th>W</th>
+			<th>D</th>
+			<th>L</th>
+			<th>F</th>
+			<th>A</th>
+			<th>GD</th>
+			<th>Pts</th>
+		</tr>
+		<% @league.teams.order(points: :desc).each_with_index do |team, index| %>
+			<tr>
+				<td style="text-align: left;"><%= " #{index+1}. #{team.team_name}" %></td>
+				<td><%= team.games_played %></td>
+				<td><%= team.wins %></td>
+				<td><%= team.draws %></td>
+				<td><%= team.defeats %></td>
+				<td><%= team.goals_scored %></td>
+				<td><%= team.goals_lost %></td>
+				<td><%= team.goals_difference %></td>
+				<td><%= team.points %></td>
+			</tr>
+		<% end %>
+</table>
+<br/>
+<h4>Calendar </h4>
+<% @league.matches.each do |match| %>
+		<br/>
+		<div><%= match.match_name %></div>
+		<%= form_tag("/leagues/#{@league.id}/match") do %>
+			<%= hidden_field_tag :match, match.match_name %>
+			<%= text_field_tag :f_team_score, nil, placeholder: match.first_team_score %> - 
+			<%= text_field_tag :s_team_score, nil, placeholder: match.second_team_score %>
+			<%= submit_tag "add score" %>
+		<% end %>
+<% end %>

@@ -16,3 +16,14 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.league-table {
+	td {
+		border: 1px solid black;
+		text-align: center;
+	}
+	th {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+}

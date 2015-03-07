@@ -1,6 +1,8 @@
-<h1><%= @league.league_name %></h1>
+<div class="text-center">
 
-<table class="league-table">
+<h1 class="page-header"><%= @league.league_name %></h1>
+
+<table class="text-center league-table table-bordered">
 		<tr>
 			<th></th>
 			<th>G</th>
@@ -12,7 +14,7 @@
 			<th>GD</th>
 			<th>Pts</th>
 		</tr>
-		<% @league.teams.order(points: :desc).each_with_index do |team, index| %>
+		<% @league.teams.order(points: :desc, goals_difference: :desc).each_with_index do |team, index| %>
 			<tr>
 				<td style="text-align: left;"><%= " #{index+1}. #{team.team_name}" %></td>
 				<td><%= team.games_played %></td>
@@ -27,14 +29,25 @@
 		<% end %>
 </table>
 <br/>
-<h4>Calendar </h4>
-<% @league.matches.each do |match| %>
+<h3>Calendar </h4>
+<br/>
+<h4>WEEK 1</h4>
+<% start = 2 %>
+<% @league.matches.each_with_index do |match, index| %>
+		
 		<br/>
-		<div><%= match.match_name %></div>
+		<h5><%= match.match_name %></h5>
 		<%= form_tag("/leagues/#{@league.id}/match") do %>
 			<%= hidden_field_tag :match, match.match_name %>
-			<%= text_field_tag :f_team_score, nil, placeholder: match.first_team_score %> - 
-			<%= text_field_tag :s_team_score, nil, placeholder: match.second_team_score %>
-			<%= submit_tag "add score" %>
+			<%= text_field_tag :f_team_score, nil, { placeholder: match.first_team_score, class: "form-control score_place" } %> - 
+			<%= text_field_tag :s_team_score, nil, { placeholder: match.second_team_score, class: "form-control score_place" } %>
+			<%= submit_tag "add score", class: "btn btn-default" %>
+		<% end %>
+		<% if (index+1) % (@league.teams.count/2) == 0 && (index) != @league.matches.index(@league.matches.last) %>
+			<br/>
+			<h4>WEEK <%= "#{start}" %></h4>
+			<% start+=1 %>
 		<% end %>
 <% end %>
+
+</div>

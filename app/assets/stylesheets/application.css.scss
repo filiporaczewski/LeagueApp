@@ -18,12 +18,20 @@
 @import "bootstrap";
 
 .league-table {
+	margin-left: auto !important;
+    margin-right: auto !important;
 	td {
 		border: 1px solid black;
-		text-align: center;
+  		float: none !important;
 	}
 	th {
+		text-align: center !important;
 		padding-left: 10px;
 		padding-right: 10px;
 	}
+}
+
+.score_place {
+	width: 3.5%;
+	display: inline !important;
 }

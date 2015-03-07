@@ -1,22 +1,28 @@
-<h3>Create new league</h3>
+<h1 class="page-header">Create new league</h1>
 
-<%= form_tag("/new") do %>
-	<%= label_tag(:num_team, "Number of teams: ") %>
-	<%= number_field_tag(:num_team) %>
-	<%= submit_tag("Change") %>
+<%= form_tag({ action: "new", method: "post" }, { class: "form-inline" }) do %>
+	<div class="form-group">
+		<%= label_tag(:num_team, "Number of teams: ") %>
+		<%= number_field_tag(:num_team, nil, class: "form-control") %>
+		<%= submit_tag("Change", class: "btn btn-default") %>
+	</div>
 <% end %>
 
+<br/>
 
-<%= form_tag("leagues#create") do %>
-	<div>
-		<%= label_tag(:league_name, "League name: ") %>:
-		<%= text_field_tag(:league_name) %>
+<%= form_tag({ action: "create"}, { class: "form" }) do %>
+	<div class="form-group" style="width: 20%; margin-left: auto; margin-right: auto;">
+		<h4><%= label_tag(:league_name, "League name: ") %></h4>
+		<%= text_field_tag(:league_name, nil, class: "form-control") %>
 	</div>
 	<% if League.team_numb %>
+	<h4>Enter team names: </h4>
 		<% (1..League.team_numb.to_i).each do |i| %>
 			<% code = ":team_name_#{i}" %>
-			<div><%= text_field_tag eval(code) %></div>
+			<div style="width: 20%; margin-left: auto; margin-right: auto;">
+				<%= text_field_tag eval(code), nil, class: "form-control", style: "margin-bottom: 1%;" %>
+			</div>
 		<% end %>
 	<% end %>
-	<div><%= submit_tag("Create League") %></div>
+	<div><%= submit_tag("Create League", class: "btn btn-default") %></div>
 <% end %>

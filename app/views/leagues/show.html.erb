@@ -31,7 +31,7 @@
 <br/>
 <h3>Calendar </h4>
 <br/>
-<h4>WEEK 1</h4>
+<h4 class="week">WEEK 1</h4>
 <% start = 2 %>
 <% @league.matches.each_with_index do |match, index| %>
 		
@@ -45,7 +45,7 @@
 		<% end %>
 		<% if (index+1) % (@league.teams.count/2) == 0 && (index) != @league.matches.index(@league.matches.last) %>
 			<br/>
-			<h4>WEEK <%= "#{start}" %></h4>
+			<h4 class="week">WEEK <%= "#{start}" %></h4>
 			<% start+=1 %>
 		<% end %>
 <% end %>

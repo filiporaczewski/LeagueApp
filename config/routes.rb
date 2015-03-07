@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root to: "leagues#index"
 
-  match 'new', to: 'leagues#new', via: [:get, :post]
+  match 'leagues/new', to: 'leagues#new', via: [:get, :post]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -4,8 +4,12 @@
 
 <ul class="list-group" style="width: 20%; margin-left: auto; margin-right: auto;">
 	<% @leagues.each do |league| %>
-		<li class="list-group-item"><%= link_to league.league_name, league_path(league) %></li>
+		<li class="list-group-item">
+			<%= link_to league.league_name, league_path(league) %>
+			<%= link_to league, { method: :delete, data: { confirm: "Are you sure?" }} do %>
+				<span class="glyphicon glyphicon-remove"></span>
+			<% end %>
+		</li>
 	<% end %>
 </ul>
-
-<%= link_to 'New league', new_league_path, class: "btn btn-default" %>
+<%= link_to 'New league', new_league_path, class: "btn btn-success", style: "width: 7%;" %>

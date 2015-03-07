@@ -1,5 +1,7 @@
 class LeaguesController < ApplicationController
 
+	before_action :set_league, only: [:play_match, :destroy, :show]
+
 	def index
 		@leagues = League.all 
 	end
@@ -9,8 +11,7 @@ class LeaguesController < ApplicationController
 		League.team_numb = params[:num_team]
 	end
 
-	def play_match
-		@league = League.find(params[:id])	
+	def play_match	
 		@league.p_match(params[:match], params[:f_team_score].to_i, params[:s_team_score].to_i)
 
 		redirect_to :league
@@ -28,17 +29,22 @@ class LeaguesController < ApplicationController
 		@league = @league.create_league(params[:league_name], teams_number, team_names_array)
 		@schedule = @league.calendar.schedule
 
+		redirect_to @league
 	end
 
 	def show
-		@league = League.find(params[:id])
 		League.get_team_names_from_schedule_string(@league, @league.calendar.schedule)
 	end
 
-	# private
-	# 	def league_params
-	# 		params.require(:league).permit(:league_name, :number_of_teams)
-	# 	end 
+	def destroy
+		@league.destroy
 
+		redirect_to :root
+	end
+
+	private
+		def set_league
+			@league = League.find(params[:id])
+		end
 end
 

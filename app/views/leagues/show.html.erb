@@ -16,7 +16,10 @@
 		</tr>
 		<% @league.teams.order(points: :desc, goals_difference: :desc).each_with_index do |team, index| %>
 			<tr>
-				<td style="text-align: left;"><%= " #{index+1}. #{team.team_name}" %></td>
+				<td style="text-align: left;">
+					<%= " #{index+1}. " %>
+					<%= team.team_name %>
+				</td>
 				<td><%= team.games_played %></td>
 				<td><%= team.wins %></td>
 				<td><%= team.draws %></td>

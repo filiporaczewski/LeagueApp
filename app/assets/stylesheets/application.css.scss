@@ -17,6 +17,23 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+* {
+margin: 0;
+}
+
+html, body {
+	height: 95%;
+}
+
+.wrapper {
+
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -4em;
+
+}
+
 .league-table {
 	margin-left: auto !important;
     margin-right: auto !important;
@@ -38,4 +55,10 @@
 
 .week {
 	color: darken(red, 10%);
+}
+
+
+
+.footer, .push {
+height: 4em;
 }

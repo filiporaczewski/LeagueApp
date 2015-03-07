@@ -8,7 +8,20 @@
 </head>
 <body class="text-center">
 
+<div class="wrapper">
+
 <%= yield %>
+
+<div class="push"></div>
+
+</div>
+
+<footer class="footer">
+	<div class="page-header"></div>
+	<%= link_to "Home", root_path, class: "btn btn-default", style: "width: 7%;" %>
+	<%= link_to 'New league', new_league_path, class: "btn btn-default", style: "width: 7%;" %>
+	<p style="margin-top: 0.5%;">Filip Oraczewski 2015</p>
+</footer>
 
 </body>
 </html>

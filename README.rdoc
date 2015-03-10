@@ -1,3 +1,3 @@
 == README
 
-Basic football league app. User can create leagues and add scores to them.
+Football league app implementation

@@ -4,6 +4,9 @@ class League < ActiveRecord::Base
 	has_one :calendar, dependent: :destroy
 	has_many :matches, dependent: :destroy
 
+	validates :number_of_teams, numericality: { only_integer: true }
+	validates :league_name, length: { in: 5..20 }
+
 	class << self
 		attr_accessor :team_numb
 
@@ -11,7 +14,7 @@ class League < ActiveRecord::Base
 			new_string = schedule_string.gsub("Round 1", "").gsub(/Round [2-99]/, "\n")
 			team_array = new_string.split("\n")
 			team_array.each do |element|
-				team_array.delete(element) if element == ""
+				team_array.delete(element) unless element =~ /.* v .*/
 			end
 			team_array.each do |element|
 				unless league.matches.find_by(match_name: element)

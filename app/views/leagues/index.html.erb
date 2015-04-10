@@ -2,7 +2,7 @@
 
 <h3>Leagues: </h3>
 
-<ul class="list-group" style="width: 20%; margin-left: auto; margin-right: auto;">
+<ul class="list-group league-index-table">
 	<% @leagues.each do |league| %>
 		<li class="list-group-item">
 			<%= link_to league.league_name, league_path(league) %>
@@ -12,4 +12,4 @@
 		</li>
 	<% end %>
 </ul>
-<%= link_to 'New league', new_league_path, class: "btn btn-success", style: "width: 7%;" %>
+<%= link_to 'New league', new_league_path, class: "btn btn-success btn-new-league" %>

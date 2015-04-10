@@ -48,17 +48,88 @@ html, body {
 	}
 }
 
-.score_place {
-	width: 3.5%;
-	display: inline !important;
-}
-
 .week {
 	color: darken(red, 10%);
 }
 
-
+.score_place {
+	display: inline !important;
+}
 
 .footer, .push {
 height: 4em;
 }
+
+@media screen and (max-width: 700px) {
+  body {
+  	height: auto;
+  	.footer {
+    	display: none;
+  	}
+  	.league-index-table {
+  		width: 80%;
+  		margin-left: auto;
+  		margin-right: auto;
+  	}
+  	.btn-new-league {
+  		width: 45%;
+  	}
+  	.score_place {
+  		width: 20%;
+  	}
+  	h5 {
+  		font-size: 150%;
+  	}
+  	h4 {
+  		font-size: 150%;
+  	}
+  	.form-new-group-up { 	 
+	  	 input {
+	  	 	margin-left: auto;
+	  	 	margin-right: auto;
+	  	 	width: 40% !important;
+	  	 }
+	  	 .btn-change {
+	  	 	width: 40% !important;
+	  	 }
+ 	 }
+ 	 .form-new-group-down {
+ 	 	input {
+	  	 	margin-left: auto;
+	  	 	margin-right: auto;
+	  	 	width: 60% !important;
+	  	 }
+ 	 }
+
+   .home-mobile {
+    font-size: 150%;
+    margin: 10px;
+    text-align: left;
+   }
+  }
+  
+}
+
+@media screen and (min-width: 700px) {
+  .league-index-table {
+  	width: 20%;
+  	margin-left: auto;
+  	margin-right: auto;
+  }
+  .btn-new-league {
+  	width: 7%;
+  }
+  .score_place {
+  	width: 3.5%;
+  }
+  .form-new-group-down {
+  	 width: 20%;
+  	 margin-left: auto;
+  	 margin-right: auto;
+  }
+  .home-mobile {
+    display: none;
+  }
+
+}
+

@@ -34,10 +34,15 @@
 <br/>
 <h3>Calendar </h4>
 <br/>
-<h4 class="week">WEEK 1</h4>
-<% start = 2 %>
+
+<% week = 1 %>
+
 <% @league.matches.each_with_index do |match, index| %>
-		
+		<% if (index) % (@league.teams.count/2) == 0 or index == 0 %>
+			<br/>
+			<h4 class="week">WEEK <%= "#{week}" %></h4>
+			<% week += 1 %>
+		<% end %>
 		<br/>
 		<h5><%= match.match_name %></h5>
 		<%= form_tag("/leagues/#{@league.id}/match") do %>
@@ -46,11 +51,7 @@
 			<%= text_field_tag :s_team_score, nil, { placeholder: match.second_team_score, class: "form-control score_place" } %>
 			<%= submit_tag "add score", class: "btn btn-default" %>
 		<% end %>
-		<% if (index+1) % (@league.teams.count/2) == 0 && (index) != @league.matches.index(@league.matches.last) %>
-			<br/>
-			<h4 class="week">WEEK <%= "#{start}" %></h4>
-			<% start+=1 %>
-		<% end %>
+		
 <% end %>
 
 </div>

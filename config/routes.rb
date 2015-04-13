@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   resources :leagues do 
     resources :teams
     match 'match', to: 'leagues#play_match', via: [:post], on: :member

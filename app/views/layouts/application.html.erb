@@ -9,9 +9,35 @@
 </head>
 <body class="text-center">
 
-<div class="home-mobile"><%= link_to "League app", root_path %></div>
+<nav class="navbar navbar-default navbar-fixed-top">  
+  <div class="container-fluid">
+    <div class="navbar-header header-edit">
+      <%= link_to "LeagueApp", root_path, class: "navbar-brand" %>
+    </div>
+    <div class="navbar-mobile">
+      <ul class="nav navbar-nav nav-edit">
+        <li class="dropdown drop-mobile"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><%= image_tag "threelines.png", class: "hamburger-menu" %></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "New league", new_league_path %></li>
+            <li><%= link_to "Contact", "#" %></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right nav-right-edit">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="col-md-12 navbar-margin"></div>
 
 <div class="wrapper">
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 
 <%= yield %>
 
@@ -21,8 +47,8 @@
 
 <footer class="footer">
 	<div class="page-header"></div>
-	<%= link_to "Home", root_path, class: "btn btn-default", style: "width: 7%;" %>
-	<%= link_to 'New league', new_league_path, class: "btn btn-default", style: "width: 7%;" %>
+	
+	<p style="margin-top: 0.5%;">Source at <a href="https://github.com/filiporaczewski/LeagueApp">https://github.com/filiporaczewski/LeagueApp</a></p>
 	<p style="margin-top: 0.5%;">Filip Oraczewski 2015</p>
 </footer>
 

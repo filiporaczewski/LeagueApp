@@ -67,6 +67,9 @@ class League < ActiveRecord::Base
 	end
 
 	def p_match(match_string, first_team_score, second_team_score)
+
+		# match string example: "Germany v France"
+
 		teams = match_string.split(/ v /)
 		first_team = self.teams.find_by(team_name: teams[0])
 		second_team = self.teams.find_by(team_name: teams[1])

@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  devise_for :users, path: "/", path_names: 
+                                          { 
+                                            sign_in: 'login',
+                                            sign_out: 'logout',
+                                            password: 'secret',
+                                            confirmation: 'verification', 
+                                            unlock: 'unblock', 
+                                            registration: 'register', 
+                                            sign_up: '/' 
+                                          }
+
   resources :leagues do 
     resources :teams
     match 'match', to: 'leagues#play_match', via: [:post], on: :member

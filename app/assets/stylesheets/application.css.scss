@@ -137,6 +137,15 @@ height: 4em;
       right: 30px;
       bottom: 15px;
     }
+
+    .link-logout {
+      bottom: 38px;
+    }
+
+    .toggle-edit {
+      border: 1px solid darken(white, 20%) !important; 
+      background: darken(white, 10%) !important;
+    }
   
   }
   
@@ -166,6 +175,8 @@ height: 4em;
   .navbar-margin {
     margin-bottom: 50px;
   }
+
+
 
 }
 

@@ -1,9 +1,6 @@
 == README
 
-<<<<<<< HEAD
-Basic football league app. User can create leagues and add scores to them.
-
 http://leagueapp.herokuapp.com
-=======
+
 Football league app implementation
->>>>>>> dee15eac3f1886638cb0f765d744c9e924c49de8
+

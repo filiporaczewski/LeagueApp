@@ -1,4 +1,8 @@
-<h1 class="page-header">Welcome in the League App</h1>
+<div class="page-header">
+<h1>Welcome in the League App</h1>
+<h3>Sign up to create your own league.</h3>
+</div>
+
 
 <h3>Leagues: </h3>
 
@@ -6,8 +10,10 @@
 	<% @leagues.each do |league| %>
 		<li class="list-group-item">
 			<%= link_to league.league_name, league_path(league) %>
-			<%= link_to league, { method: :delete, data: { confirm: "Are you sure?" }} do %>
-				<span class="glyphicon glyphicon-remove"></span>
+			<% if user_signed_in? and (current_user.admin == true or current_user.leagues.include? league)%>
+				<%= link_to league, { method: :delete, data: { confirm: "Are you sure?" }} do %>
+					<span class="glyphicon glyphicon-remove"></span>
+				<% end %>
 			<% end %>
 		</li>
 	<% end %>

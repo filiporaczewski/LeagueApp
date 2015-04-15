@@ -52,8 +52,24 @@
 
 <div class="wrapper">
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<% if notice %>
+  <div class="messages col-md-4 col-md-offset-4">
+    <div class="alert alert-danger" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= notice %>
+    </div>
+  </div>
+
+<% end %>
+<% if alert %>
+  <div class="messages col-md-4 col-md-offset-4">
+    <div class="alert alert-danger" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <%= alert %>
+    </div>
+  </div>
+
+<% end %>
 
 <%= yield %>
 

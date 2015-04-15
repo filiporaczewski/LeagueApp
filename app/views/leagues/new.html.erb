@@ -12,7 +12,7 @@
 
 <%= form_tag({ action: "create"}, { class: "form" }) do %>
 	<div class="form-group form-new-group-down" style="margin-top: 30px;">
-		<h4><%= label_tag(:league_name, "League name: ") %></h4>
+		<h4><%= label_tag(:league_name, "League name") %> (<i>min. 5 characters</i>)</h4>
 		<%= text_field_tag(:league_name, nil, class: "form-control") %>
 	</div>
 	<% if League.team_numb %>

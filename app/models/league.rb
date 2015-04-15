@@ -3,6 +3,7 @@ class League < ActiveRecord::Base
 	has_many :teams, dependent: :destroy
 	has_one :calendar, dependent: :destroy
 	has_many :matches, dependent: :destroy
+	belongs_to :user
 
 	validates :number_of_teams, numericality: { only_integer: true }
 	validates :league_name, length: { in: 5..20 }
@@ -38,8 +39,8 @@ class League < ActiveRecord::Base
 		end
 	end
 
-	def create_league(league_name, number_of_teams, team_names)
-		@league = League.create(league_name: league_name, number_of_teams: number_of_teams)
+	def create_league(league_owner, league_name, number_of_teams, team_names)
+		@league = League.create(league_name: league_name, number_of_teams: number_of_teams, user: league_owner)
 		(1..number_of_teams).each do |i|
 			Team.create(league_id: @league.id) do |team|
 				team.games_played = 0

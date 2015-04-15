@@ -1,6 +1,7 @@
 class LeaguesController < ApplicationController
 
 	before_action :set_league, only: [:play_match, :destroy, :show]
+	before_action :authenticate_user!, except: [:index, :show]
 
 	def index
 		@leagues = League.all 
@@ -26,7 +27,7 @@ class LeaguesController < ApplicationController
 			team_names_array << eval(code)
 		end
 
-		@league = @league.create_league(params[:league_name], teams_number, team_names_array)
+		@league = @league.create_league(current_user, params[:league_name], teams_number, team_names_array)
 		@schedule = @league.calendar.schedule
 
 		redirect_to @league
@@ -46,5 +47,7 @@ class LeaguesController < ApplicationController
 		def set_league
 			@league = League.find(params[:id])
 		end
+
+
 end
 

@@ -1,21 +1,22 @@
-<div class="page-header">
-<h1>Welcome in the League App</h1>
-<h3>Sign up to create your own league.</h3>
-</div>
+<div class="col-md-12">
 
+	<div class="page-header">
+	<h1>Welcome in the League App</h1>
+	<h3>Sign up to create your own league.</h3>
+	</div>
 
-<h3>Leagues: </h3>
-
-<ul class="list-group league-index-table">
-	<% @leagues.each do |league| %>
-		<li class="list-group-item">
-			<%= link_to league.league_name, league_path(league) %>
-			<% if user_signed_in? and (current_user.admin == true or current_user.leagues.include? league)%>
-				<%= link_to league, { method: :delete, data: { confirm: "Are you sure?" }} do %>
-					<span class="glyphicon glyphicon-remove"></span>
+	<ul class="list-group league-index-table">
+		<% @leagues.each do |league| %>
+			<li class="list-group-item" id="league_<%= league.id %>">
+				<%= link_to league.league_name, league_path(league) %>
+				<% if user_signed_in? and (current_user.admin == true or current_user.leagues.include? league)%>
+					<%= link_to league, { method: :delete, data: { confirm: "Are you sure?" }, remote: true, id: "remove_#{league.id}" } do %>
+						<span class="glyphicon glyphicon-remove"></span>
+					<% end %>
 				<% end %>
-			<% end %>
-		</li>
-	<% end %>
-</ul>
-<%= link_to 'New league', new_league_path, class: "btn btn-success btn-new-league" %>
+			</li>
+		<% end %>
+	</ul>
+	<%= link_to 'New league', new_league_path, class: "btn btn-success btn-new-league" %>
+
+</div>

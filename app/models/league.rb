@@ -108,6 +108,13 @@ class League < ActiveRecord::Base
 		this_match.first_team_score = first_team_score
 		this_match.second_team_score = second_team_score
 		this_match.save
+
+		teams_sorted = self.teams.order(points: :desc, goals_difference: :desc)
+
+		teams_sorted.each_with_index do |team, index|
+			team.position = index + 1
+			team.save
+		end
 		
 	end
 

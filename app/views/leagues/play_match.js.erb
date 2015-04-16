@@ -1,0 +1,26 @@
+$("#games_played_<%= @first_team.id %>").text("<%= @first_team.games_played %>");
+$("#wins_<%= @first_team.id %>").text("<%= @first_team.wins %>");
+$("#draws_<%= @first_team.id %>").text("<%= @first_team.draws %>");
+$("#defeats_<%= @first_team.id %>").text("<%= @first_team.defeats %>");
+$("#goals_scored_<%= @first_team.id %>").text("<%= @first_team.goals_scored %>");
+$("#goals_lost_<%= @first_team.id %>").text("<%= @first_team.goals_lost %>");
+$("#goals_difference_<%= @first_team.id %>").text("<%= @first_team.goals_difference %>");
+$("#points_<%= @first_team.id %>").text("<%= @first_team.points %>");
+
+$("#games_played_<%= @second_team.id %>").text("<%= @second_team.games_played %>");
+$("#wins_<%= @second_team.id %>").text("<%= @second_team.wins %>");
+$("#draws_<%= @second_team.id %>").text("<%= @second_team.draws %>");
+$("#defeats_<%= @second_team.id %>").text("<%= @second_team.defeats %>");
+$("#goals_scored_<%= @second_team.id %>").text("<%= @second_team.goals_scored %>");
+$("#goals_lost_<%= @second_team.id %>").text("<%= @second_team.goals_lost %>");
+$("#goals_difference_<%= @second_team.id %>").text("<%= @second_team.goals_difference %>");
+$("#points_<%= @second_team.id %>").text("<%= @second_team.points %>");
+
+$(".match_<%= @match_id %>").css({'background-color':'rgba(231,42,8,1)'}).animate({'background-color':'white'}, 1000);
+
+<% @league.teams.each do |team| %>
+	$("#position_<%= team.id %>").text("<%= team.position %>.");
+<% end %>
+
+$('.league-table').tablesorter( {sortList: [[0,0]]} );
+

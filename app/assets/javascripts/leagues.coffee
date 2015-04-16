@@ -5,7 +5,7 @@
 $ ->
 	$('.league-table tr').mouseover ->
 		$(@).css(
-				'background-color': '#009933'
+				'background-color': 'rgba(231,42,8,1)'
 				'color': 'white'
 
 			)
@@ -14,4 +14,6 @@ $ ->
 				'background-color': 'white'
 				'color': '#333333'
 
-			)	
+			)
+
+

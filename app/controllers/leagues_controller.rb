@@ -3,6 +3,7 @@ class LeaguesController < ApplicationController
 	before_action :set_league, only: [:play_match, :destroy, :show]
 	before_action :authenticate_user!, except: [:index, :show]
 	before_action :owner?, only: [:play_match, :destroy]
+	before_action :sort_teams, only: :show
 
 	def index
 		@leagues = League.all 
@@ -16,7 +17,15 @@ class LeaguesController < ApplicationController
 	def play_match	
 		@league.p_match(params[:match], params[:f_team_score].to_i, params[:s_team_score].to_i)
 
-		redirect_to :league
+		@match_id = params[:match_id]
+		teams = params[:match].split(/ v /)
+		@first_team = @league.teams.find_by(team_name: teams[0])
+		@second_team = @league.teams.find_by(team_name: teams[1])
+
+		respond_to do |format|
+			format.html { redirect_to :league }
+			format.js
+		end
 	end
 
 	def create
@@ -36,17 +45,32 @@ class LeaguesController < ApplicationController
 
 	def show
 		League.get_team_names_from_schedule_string(@league, @league.calendar.schedule)
+
+		
 	end
 
 	def destroy
 		@league.destroy
 
-		redirect_to :root
+		respond_to do |format|
+			format.html { redirect_to :root }
+			format.js
+		end
+
 	end
 
 	private
 		def set_league
 			@league = League.find(params[:id])
+		end
+
+		def sort_teams 
+			@teams_sorted = @league.teams.order(points: :desc, goals_difference: :desc)
+
+			@teams_sorted.each_with_index do |team, index|
+				team.position = index + 1
+				team.save
+			end
 		end
 
 		def owner?

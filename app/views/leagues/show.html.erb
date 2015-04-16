@@ -3,8 +3,10 @@
 <h1 class="page-header col-md-12"><%= @league.league_name %></h1>
 
 <table class="text-center league-table table-bordered">
+	<thead>
 		<tr>
-			<th></th>
+			<th>#</th>
+			<th>Team name</th>
 			<th>G</th>
 			<th>W</th>
 			<th>D</th>
@@ -14,22 +16,26 @@
 			<th>GD</th>
 			<th>Pts</th>
 		</tr>
-		<% @league.teams.order(points: :desc, goals_difference: :desc).each_with_index do |team, index| %>
-			<tr>
-				<td style="text-align: left;">
-					<%= " #{index+1}. " %>
+	</thead>
+	<tbody>
+		<% @teams_sorted.each_with_index do |team, index| %>
+			<tr id="<%= index + 1 %>">
+				<td id="position_<%= team.id %>"><%= "#{team.position}." %></td>
+
+				<td>
 					<%= team.team_name %>
 				</td>
-				<td><%= team.games_played %></td>
-				<td><%= team.wins %></td>
-				<td><%= team.draws %></td>
-				<td><%= team.defeats %></td>
-				<td><%= team.goals_scored %></td>
-				<td><%= team.goals_lost %></td>
-				<td><%= team.goals_difference %></td>
-				<td><%= team.points %></td>
+				<td id="games_played_<%= team.id %>"><%= team.games_played %></td>
+				<td id="wins_<%= team.id %>"><%= team.wins %></td>
+				<td id="draws_<%= team.id %>"><%= team.draws %></td>
+				<td id="defeats_<%= team.id %>"><%= team.defeats %></td>
+				<td id="goals_scored_<%= team.id %>"><%= team.goals_scored %></td>
+				<td id="goals_lost_<%= team.id %>"><%= team.goals_lost %></td>
+				<td id="goals_difference_<%= team.id %>"><%= team.goals_difference %></td>
+				<td id="points_<%= team.id %>"><%= team.points %></td>
 			</tr>
 		<% end %>
+	</tbody>
 </table>
 <br/>
 <h3>Calendar </h4>
@@ -45,10 +51,11 @@
 		<% end %>
 		<br/>
 		<h5><%= match.match_name %></h5>
-		<%= form_tag("/leagues/#{@league.id}/match") do %>
+		<%= form_tag("/leagues/#{@league.id}/match", remote: true) do %>
 			<%= hidden_field_tag :match, match.match_name %>
-			<%= text_field_tag :f_team_score, nil, { placeholder: match.first_team_score, class: "form-control score_place" } %> - 
-			<%= text_field_tag :s_team_score, nil, { placeholder: match.second_team_score, class: "form-control score_place" } %>
+			<%= hidden_field_tag :match_id, match.id %>
+			<%= text_field_tag :f_team_score, nil, { autocomplete: "off", placeholder: match.first_team_score, class: "form-control score_place match_#{match.id}"  } %> - 
+			<%= text_field_tag :s_team_score, nil, { autocomplete: "off", placeholder: match.second_team_score, class: "form-control score_place match_#{match.id}" } %>
 			<%= submit_tag "add score", class: "btn btn-default" %>
 		<% end %>
 		
